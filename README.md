@@ -1,6 +1,6 @@
 This folder contains the .yaml files to deploy the ESC VM-Scheduler to Kubernetes.
 
-# via HELM
+# via HELM
 
 1. Set the env variables in the `values.yaml` file
 
