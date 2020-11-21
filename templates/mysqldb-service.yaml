@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mysqldb
+  name: mysqldb
+spec:
+  ports:
+  - name: "3306"
+    port: 3306
+  selector:
+    io.kompose.service: mysqldb
+status:
+  loadBalancer: {}

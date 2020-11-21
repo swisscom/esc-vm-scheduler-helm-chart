@@ -1,0 +1,21 @@
+# Replace example values with your configuration
+
+MYSQL_ROOT_PASSWORD: "setAsecurePassword"
+SECRET_KEY: "setArandomKey"
+INITIAL_ADMIN_PASSWORD: "password"
+INITIAL_USER_PASSWORD: "password"
+ALLOWED_HOSTS: "localhost,yourdomain.com,0.0.0.0,vm-scheduler"
+
+LDAP_SERVER_URI: "ldap://ldap.forumsys.com:389"
+LDAP_BASE_DN: "DC=example,DC=com"
+LDAP_GROUP_DN: null
+LDAP_SUPERUSER_GROUP_DN: "ou=mathematicians,dc=example,dc=com"
+LDAP_BIND_DN: "cn=read-only-admin,dc=example,dc=com"
+LDAP_BIND_PASSWORD: "password"
+LDAP_START_TLS: null
+LDAP_IGNORE_CERT: true
+LDAP_CERTIFICATE: |
+    -----BEGIN CERTIFICATE-----
+    ...
+    -----END CERTIFICATE-----
+LDAP_WITH_LOCAL_AUTH: true

@@ -1,0 +1,11 @@
+name: vmscheduler
+description: A generated Helm Chart for the Swisscom ESC VM-Scheduler
+version: 2.3.1
+apiVersion: v1
+keywords:
+  - swisscom
+  - esc_scheduler
+  - esc
+  - vm_scheduler
+sources:
+home:
