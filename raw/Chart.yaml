@@ -1,4 +1,4 @@
-name: vmscheduler
+name: escvmscheduler
 description: A generated Helm Chart for the Swisscom ESC VM-Scheduler
 version: 2.3.1
 apiVersion: v1
