@@ -21,7 +21,7 @@ This folder contains the .yaml files to deploy the ESC VM-Scheduler to Kubernete
 
 # via kubectl
 
-1. Replace all the env variables with your values
+1. Replace all the `{{ .Values.FOO }}` variables with your values in the template files
 
 2. Run the following command:
     ```sh
