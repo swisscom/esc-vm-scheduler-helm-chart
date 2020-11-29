@@ -45,15 +45,14 @@ LDAP_BASE_DN: "DC=example,DC=com"
 LDAP_GROUP_DN: ""
 ### LDAP_SUPERUSER_GROUP_DN - The group containing users that shall get admin rights  (optional)
 LDAP_SUPERUSER_GROUP_DN: "ou=mathematicians,dc=example,dc=com"
-### LDAP_GROUP_TYPE - The Group type of the GROUP_DN and SUPERUSER_GROUP_DN. Possible values: "group" & "groupOfUniqueNames"
-LDAP_GROUP_TYPE: "group"
 ### LDAP_WITH_LOCAL_AUTH - Enables local "admin" user in addition to LDAP users
 LDAP_WITH_LOCAL_AUTH: true
 ### LDAP_START_TLS - Enable LDAP StartTLS (optional)
 LDAP_START_TLS: false
 ### LDAP_IGNORE_CERT - Ignore TLS/LDAPS certificates (optional)
 LDAP_IGNORE_CERT: true
-LDAP_CERTIFICATE_PATH: "ldap_cert.pem"
+### LDAP_CERTIFICATE_PATH - Path to LDAP .pem certificate relative to Chart.yaml (optional)
+LDAP_CERTIFICATE_PATH: "./ldap_cert.pem"
 
 #################################
 ### Kubernetes Settings: ########

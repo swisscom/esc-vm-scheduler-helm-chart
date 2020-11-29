@@ -52,7 +52,7 @@ spec:
         - name: LDAP_SERVER_URI
           value: {{ .Values.LDAP_SERVER_URI | quote }}
         {{- end }}
-        {{- if .Values.LDAP_START_TLS }}
+        {{- if .Values.LDAP_START_TLS }}  
         - name: LDAP_START_TLS
           value: {{ .Values.LDAP_START_TLS | quote }}
         {{- end }}
@@ -65,8 +65,8 @@ spec:
           value: {{ .Values.LDAP_WITH_LOCAL_AUTH | quote }}
         {{- end }}
         {{- if .Values.LDAP_GROUP_TYPE }}
-        - name: LDAP_GROUP_TYPE
-          value: {{ .Values.LDAP_GROUP_TYPE | quote }}
+        - name: LDAP_GROUP_TYPE # rarely used -> therefore not documented
+          value: {{ default "group" .Values.LDAP_GROUP_TYPE | quote }}
         {{- end }}
         - name: MYSQL_ROOT_PASSWORD
           value: {{ required "MYSQL_ROOT_PASSWORD is required!" .Values.MYSQL_ROOT_PASSWORD | quote }}
