@@ -12,6 +12,6 @@ entries:
     - vm_scheduler
     name: escvmscheduler
     urls:
-    - escvmscheduler-2.3.1.tgz
-    version: 2.3.1
+    - escvmscheduler-1.0.2.tgz
+    version: 1.0.2
 generated: "2020-11-22T17:32:16.746716+01:00"

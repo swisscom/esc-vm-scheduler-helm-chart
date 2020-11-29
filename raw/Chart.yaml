@@ -1,7 +1,7 @@
 name: escvmscheduler
 description: Helm Chart to install the Swisscom ESC VM-Scheduler
-version: 1.0.1 # Only for HELM Chart, totally independent from App Version
-appVersion: 2.3.2
+version: 1.0.2 # Only for HELM Chart, totally independent from App Version
+appVersion: 2.4.0
 apiVersion: v1
 keywords:
   - swisscom
