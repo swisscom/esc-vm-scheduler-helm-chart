@@ -40,14 +40,6 @@ spec:
         - name: LDAP_BIND_PASSWORD
           value: {{ .Values.LDAP_BIND_PASSWORD | quote }}
         {{- end }}
-        {{- if .Values.LDAP_CERTIFICATE }}  
-        - name: LDAP_CERTIFICATE
-          value: {{ .Values.LDAP_CERTIFICATE | quote }}
-        {{- end }}
-        {{- if .Values.LDAP_CERTIFICATE_PATH }}  
-        - name: LDAP_CERTIFICATE_PATH
-          value: {{ .Values.LDAP_CERTIFICATE_PATH | quote }}
-        {{- end }}
         {{- if .Values.LDAP_GROUP_DN }}
         - name: LDAP_GROUP_DN
           value: {{ .Values.LDAP_GROUP_DN | quote }}
@@ -87,11 +79,21 @@ spec:
         - containerPort: 80
         resources: {}
         volumeMounts:
-        - mountPath: /app/staticfiles
-          name: static-volume
+        - name: static-volume
+          mountPath: /app/staticfiles
+        - name: ldap-certificate
+          mountPath: /etc/ssl/certs
       restartPolicy: Always
       serviceAccountName: {{ default "" .Values.serviceAccountName | quote }}
       volumes:
       - name: static-volume
         persistentVolumeClaim:
           claimName: static-volume
+      - name: ldap-certificate
+        configMap:
+          name: certificates-config
+          items:
+          {{- if .Values.LDAP_CERTIFICATE_PATH }}
+          - key: ldap_certificate
+            path: ldap_cert.pem
+          {{- end }}

@@ -53,13 +53,7 @@ LDAP_WITH_LOCAL_AUTH: true
 LDAP_START_TLS: false
 ### LDAP_IGNORE_CERT - Ignore TLS/LDAPS certificates (optional)
 LDAP_IGNORE_CERT: true
-### LDAP_CERTIFICATE - A TLS certifcate in string format (optional) 
-# LDAP_CERTIFICATE: |
-#     -----BEGIN CERTIFICATE-----
-#     ...
-#     -----END CERTIFICATE-----
-### LDAP_CERTIFICATE_PATH - Not yet implemented (optional)
-# LDAP_CERTIFICATE_PATH: null
+LDAP_CERTIFICATE_PATH: "ldap_cert.pem"
 
 #################################
 ### Kubernetes Settings: ########
