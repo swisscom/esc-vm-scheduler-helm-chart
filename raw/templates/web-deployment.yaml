@@ -95,5 +95,5 @@ spec:
           items:
           {{- if .Values.LDAP_CERTIFICATE_PATH }}
           - key: ldap_certificate
-            path: ldap_cert.pem
+            path: escvmscheduler_ldap_cert.pem
           {{- end }}
