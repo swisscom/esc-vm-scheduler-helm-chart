@@ -17,18 +17,38 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: swisscomcloud/esc-vm-scheduler-nginx:latest
+      - name: nginx
+        {{- if .Values.SSL_CRT_PATH }}
+        image: swisscomcloud/esc-vm-scheduler-nginx-ssl:latest
+        {{- else }}
+        image: swisscomcloud/esc-vm-scheduler-nginx:latest
+        {{- end }}
         imagePullPolicy: "IfNotPresent"
-        name: nginx
         ports:
         - containerPort: 80
+        - containerPort: 443
         resources: {}
         volumeMounts:
-        - mountPath: /app/staticfiles
-          name: static-volume
+        - name: static-volume
+          mountPath: /app/staticfiles
+        - name: ssl-certificates
+          mountPath: /etc/ssl/certs
+          readOnly: true
       restartPolicy: Always
       serviceAccountName: {{ default "" .Values.serviceAccountName | quote }}
       volumes:
       - name: static-volume
         persistentVolumeClaim:
           claimName: static-volume
+      - name: ssl-certificates
+        secret:
+          secretName: certificates-secret
+          items:
+          {{- if .Values.SSL_CRT_PATH }}
+          - key: nginx_ssl_crt
+            path: escvmscheduler-nginx-selfsigned.crt
+          {{- end }}
+          {{- if .Values.SSL_KEY_PATH }}
+          - key: nginx_ssl_key
+            path: escvmscheduler-nginx-selfsigned.key
+          {{- end }}

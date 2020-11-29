@@ -29,6 +29,15 @@ MYSQL_ROOT_PASSWORD: "setAsecurePassword"
 
 
 
+################################
+### TLS/SSL Settings: ##########
+################################
+
+### SSL_CRT_PATH - Path to SSL/TLS .crt file relative to Chart.yaml (optional)
+SSL_CRT_PATH: "escvmscheduler-nginx-selfsigned.crt"
+### SSL_KEY_PATH - Path to SSL/TLS .key file relative to Chart.yaml (optional)
+SSL_KEY_PATH: "escvmscheduler-nginx-selfsigned.key"
+
 #################################
 ### LDAP Settings (optional): ###
 #################################
@@ -52,7 +61,7 @@ LDAP_START_TLS: false
 ### LDAP_IGNORE_CERT - Ignore TLS/LDAPS certificates (optional)
 LDAP_IGNORE_CERT: true
 ### LDAP_CERTIFICATE_PATH - Path to LDAP .pem certificate relative to Chart.yaml (optional)
-LDAP_CERTIFICATE_PATH: "./ldap_cert.pem"
+LDAP_CERTIFICATE_PATH: "ldap_cert.pem"
 
 #################################
 ### Kubernetes Settings: ########
