@@ -1,29 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
-    io.kompose.service: mysqldb
+    app: mysqldb
   name: mysqldb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: mysqldb
+      app: mysqldb
   strategy:
     type: Recreate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.service: mysqldb
+        app: mysqldb
     spec:
       containers:
       - env:
         - name: MYSQL_DATABASE
           value: "vm_scheduler"
         - name: MYSQL_ROOT_PASSWORD
-          value: "{{ .Values.MYSQL_ROOT_PASSWORD }}"
+          value: {{ required "MYSQL_ROOT_PASSWORD is required!" .Values.MYSQL_ROOT_PASSWORD | quote }}
         image: mysql:5.7
         imagePullPolicy: "IfNotPresent"
         name: mysqldb
@@ -31,12 +29,11 @@ spec:
         - containerPort: 3306
         resources: {}
         volumeMounts:
-        - mountPath: /var/lib/mysqld
-          name: mysqldb-claim0
+        - mountPath: /var/lib/mysql
+          name: mysqldb-persistentvolumeclaim
       restartPolicy: Always
-      serviceAccountName: ""
+      serviceAccountName: {{ default "" .Values.serviceAccountName | quote }}
       volumes:
-      - name: mysqldb-claim0
+      - name: mysqldb-persistentvolumeclaim
         persistentVolumeClaim:
-          claimName: mysqldb-claim0
-status: {}
+          claimName: mysqldb-persistentvolumeclaim

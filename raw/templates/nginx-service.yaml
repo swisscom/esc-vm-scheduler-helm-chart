@@ -1,17 +1,18 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
   labels:
-    io.kompose.service: nginx
+    app: nginx
   name: nginx
 spec:
   ports:
-  - name: "80"
+  - name: "http"
     port: 80
+    protocol: TCP
     targetPort: 80
   selector:
-    io.kompose.service: nginx
+    app: nginx
   type: LoadBalancer
-status:
-  loadBalancer: {}
+  {{- if .Values.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.loadBalancerIP }}
+  {{- end }}

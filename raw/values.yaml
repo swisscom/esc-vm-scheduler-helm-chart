@@ -1,21 +1,75 @@
-# Replace example values with your configuration
+#############################
+### Local User Passwords: ###
+#############################
 
-MYSQL_ROOT_PASSWORD: "setAsecurePassword"
-SECRET_KEY: "setArandomKey"
-INITIAL_ADMIN_PASSWORD: "password"
+### INITIAL_USER_PASSWORD - For user named "user" - only relevant if no LDAP is in use
 INITIAL_USER_PASSWORD: "password"
-ALLOWED_HOSTS: "localhost,yourdomain.com,0.0.0.0,vm-scheduler"
+### INITIAL_ADMIN_PASSWORD - For user named "admin" - exists in any case
+INITIAL_ADMIN_PASSWORD: "password"
 
+
+
+#################################
+### Django Security Settings: ###
+#################################
+
+### SECRET_KEY - used to provide cryptographic signing, should be set to a unique, unpredictable value.
+SECRET_KEY: "setArandomKey"
+### ALLOWED_HOSTS - A list of strings representing the host/domain names that this Django site can serve. This is a security measure to prevent HTTP Host header attacks, which are possible even under many seemingly-safe web server configurations.
+ALLOWED_HOSTS: "localhost,0.0.0.0,127.0.0.1,vm-scheduler,yourdomain.com" 
+
+
+
+################################
+### Database Settings: #########
+################################
+
+### MYSQL_ROOT_PASSWORD - Root password for the MySQL Databased used for this application.
+MYSQL_ROOT_PASSWORD: "setAsecurePassword"
+
+
+
+#################################
+### LDAP Settings (optional): ###
+#################################
+
+### LDAP_SERVER_URI - The URI for the LDAP Server for login
 LDAP_SERVER_URI: "ldap://ldap.forumsys.com:389"
-LDAP_BASE_DN: "DC=example,DC=com"
-LDAP_GROUP_DN: null
-LDAP_SUPERUSER_GROUP_DN: "ou=mathematicians,dc=example,dc=com"
+### LDAP_BIND_DN - The object/credential used for authenticating against LDAP
 LDAP_BIND_DN: "cn=read-only-admin,dc=example,dc=com"
+### LDAP_BIND_PASSWORD - The object/credential's password used for authenticating against LDAP
 LDAP_BIND_PASSWORD: "password"
-LDAP_START_TLS: null
-LDAP_IGNORE_CERT: true
-LDAP_CERTIFICATE: |
-    -----BEGIN CERTIFICATE-----
-    ...
-    -----END CERTIFICATE-----
+### LDAP_BASE_DN - The point from where the LDAP server will search for users
+LDAP_BASE_DN: "DC=example,DC=com"
+### LDAP_GROUP_DN - The group containing users that shall get regular user rights
+LDAP_GROUP_DN: ""
+### LDAP_SUPERUSER_GROUP_DN - The group containing users that shall get admin rights  (optional)
+LDAP_SUPERUSER_GROUP_DN: "ou=mathematicians,dc=example,dc=com"
+### LDAP_GROUP_TYPE - The Group type of the GROUP_DN and SUPERUSER_GROUP_DN. Possible values: "group" & "groupOfUniqueNames"
+LDAP_GROUP_TYPE: "group"
+### LDAP_WITH_LOCAL_AUTH - Enables local "admin" user in addition to LDAP users
 LDAP_WITH_LOCAL_AUTH: true
+### LDAP_START_TLS - Enable LDAP StartTLS (optional)
+LDAP_START_TLS: false
+### LDAP_IGNORE_CERT - Ignore TLS/LDAPS certificates (optional)
+LDAP_IGNORE_CERT: true
+### LDAP_CERTIFICATE - A TLS certifcate in string format (optional) 
+# LDAP_CERTIFICATE: |
+#     -----BEGIN CERTIFICATE-----
+#     ...
+#     -----END CERTIFICATE-----
+### LDAP_CERTIFICATE_PATH - Not yet implemented (optional)
+# LDAP_CERTIFICATE_PATH: null
+
+#################################
+### Kubernetes Settings: ########
+#################################
+
+### loadBalancerIP - If not specified, the loadBalancer is set up with an ephemeral IP address. (optional)
+# loadBalancerIP: 1.1.1.1
+### serviceAccountName - If not specified, the "default" Service Account will be used (optional)
+# serviceAccountName: ""
+### volumeClaimSpec - Set the storageClassName & volumeMode for the two persitent volume claims (optional)
+# volumeClaimSpec:
+#   storageClassName: nfs-client
+#   volumeMode: Filesystem
