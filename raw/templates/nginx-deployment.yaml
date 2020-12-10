@@ -18,17 +18,16 @@ spec:
     spec:
       containers:
       - name: nginx
-        {{- if .Values.SSL_CRT_PATH }}
-        image: swisscomcloud/esc-vm-scheduler-nginx-ssl:latest
-        {{- else }}
-        image: swisscomcloud/esc-vm-scheduler-nginx:latest
-        {{- end }}
+        image: nginx:1.17.4-alpine
         imagePullPolicy: "IfNotPresent"
         ports:
         - containerPort: 80
         - containerPort: 443
         resources: {}
         volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d
+          readOnly: true
         - name: static-volume
           mountPath: /app/staticfiles
         - name: ssl-certificates
@@ -40,6 +39,12 @@ spec:
       - name: static-volume
         persistentVolumeClaim:
           claimName: static-volume
+      - name: nginx-config
+        configMap:
+          name: nginx-config
+          items:
+          - key: nginx_conf
+            path: nginx.conf
       - name: ssl-certificates
         secret:
           secretName: certificates-secret
