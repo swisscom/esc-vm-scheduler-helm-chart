@@ -1,17 +1,17 @@
 apiVersion: v1
 entries:
   escvmscheduler:
-  - apiVersion: v1
-    created: "2020-11-22T17:32:16.748329+01:00"
-    description: A generated Helm Chart for the Swisscom ESC VM-Scheduler
-    digest: a6b6d23e26b06be2b3fa02f119f3a287da37453cd6bde62cceb0ca2444e6d1e3
-    keywords:
-    - swisscom
-    - esc_scheduler
-    - esc
-    - vm_scheduler
-    name: escvmscheduler
-    urls:
-    - escvmscheduler-1.0.5.tgz
-    version: 1.0.5
+    - apiVersion: v1
+      created: "2020-11-22T17:32:16.748329+01:00"
+      description: A generated Helm Chart for the Swisscom ESC VM-Scheduler
+      digest: a6b6d23e26b06be2b3fa02f119f3a287da37453cd6bde62cceb0ca2444e6d1e3
+      keywords:
+        - swisscom
+        - esc_scheduler
+        - esc
+        - vm_scheduler
+      name: escvmscheduler
+      urls:
+        - escvmscheduler-1.0.7.tgz
+      version: 1.0.7
 generated: "2020-11-22T17:32:16.746716+01:00"
